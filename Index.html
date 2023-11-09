@@ -25,7 +25,7 @@
         section.page {
             width: 100%;
             min-height: 100vh;
-            background-color: salmon;
+            background-image: linear-gradient(to right, pink, white, pink);
             margin-bottom: 10px;
             display: flex;
             flex-direction: column;
@@ -59,7 +59,9 @@
             padding: 10pt;
             max-width: 250pt;
             min-height: 300pt;
-            background-color: gray;
+            background-color: black;
+            border: 5px white solid;
+            color: white;
             border-radius: 50px;
             display: flex;
             flex-direction: column;
@@ -118,6 +120,56 @@
         div.relative.heart {
             position: relative;
             bottom: 20px;
+        }
+
+        section.page.four div.card.three div.top img.card-3-top {
+            border-radius: 150px;
+        }
+
+        section.page.four div.tanggal {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-evenly;
+            margin: 25px;
+            height: 85px;
+            width: 325px;
+            border-radius: 25px;
+            /* gap: 30px; */
+            color: white;
+            background-color: black;
+        }
+
+        section.page.four div.tanggal div.waktu {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-evenly;
+            height: 75px;
+            width: 65px;
+            border-radius: 15px;
+            border: 2px white solid;
+        }
+
+        section.page.four div.tanggal div.waktu.hari {
+            background-color: red;
+        }
+        section.page.four div.tanggal div.waktu.jam {
+            background-color: yellow;
+            color: black;
+        }
+        section.page.four div.tanggal div.waktu.menit {
+            background-color: green;
+        }
+        section.page.four div.tanggal div.waktu.detik {
+            background-color: blue;
+        }
+
+        section.page.four div.card.three a.open-maps {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
         }
 
         section.page.eight div.text.gift h2 {
@@ -188,28 +240,29 @@
             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Distinctio minima quam, illo accusantium quia nihil culpa labore perferendis nam? Necessitatibus cum numquam quae fugit dicta perferendis distinctio. Molestiae, perspiciatis voluptatibus!</p>
             <h2>[QS. AR Rum:21]</h2>
             <div class="tanggal">
-                <div class="hari">
-                    <p>0</p>
+                <div class="waktu hari">
+                    <p id="hari">0</p>
                     <p>Hari</p>
                 </div>
-                <div class="Jam">
-                    <p>0</p>
+                <div class="waktu jam">
+                    <p id="jam">0</p>
                     <p>Jam</p>
                 </div>
-                <div class="Menit">
-                    <p>0</p>
+                <div class="waktu menit">
+                    <p id="menit">0</p>
                     <p>Menit</p>
                 </div>
-                <div class="Detik">
-                    <p>0</p>
+                <div class="waktu detik">
+                    <p id="detik">0</p>
                     <p>Detik</p>
                 </div>
+            </div>
                 <div class="Save">
-                    <button>📅 Save The Date</button>
+                    <button class="Date">📅 Save The Date</button>
                 </div>
-                <div class="card 3">
+                <div class="card three">
                     <div class="top">
-                        <img src="Cangkir putih.png" alt="cangkir">
+                        <img class="card-3-top" src="Cangkir putih.png" alt="cangkir">
                         <h3>Akad</h3>
                         <p>Minggu, 17 September 2023</p>
                         <p>07.30 WIB s/d Selesai</p>
@@ -217,7 +270,7 @@
                             <div class="line"></div><div class="relative flag">🚩</div>
                             <h4>Tempat</h4>
                             <p>Ballroom The Golden Sriwijaya</p>
-                            <a href="#">🎈Open Maps</a>
+                            <a class="open-maps" href="#">🎈Open Maps</a>
                         </div>
                     </div>
                     <div class="bottom">
@@ -228,11 +281,10 @@
                             <div class="line"></div><div class="relative flag">🚩</div>
                             <h4>Tempat</h4>
                             <p>Ballroom The Golden Sriwijaya</p>
-                            <a href="#">🎈Open Maps</a>
+                            <a class="open-maps" href="#">🎈Open Maps</a>
                         </div>
                     </div>
                 </div>
-            </div>
         </section>
         <section class="page five">
             <div class="health one">
@@ -336,4 +388,30 @@
         </section>
     </div>
 </body>
+<script>
+            let timer = 100005;
+        const dayText = document.getElementById("hari");
+        const hourText = document.getElementById("jam");
+        const minuteText = document.getElementById("menit");
+        const secondText = document.getElementById("detik");
+
+        function showTimer(timer){
+        const day = Math.floor(timer / (3600 * 24))
+        const hour = Math.floor(timer / 3600);
+        const minute = Math.floor((timer % 3600) / 60);
+        const second = timer % 60;
+
+        dayText.innerHTML = day.toString().padStart(2, "0");
+        hourText.innerHTML = hour.toString().padStart(2, "0");
+        minuteText.innerHTML = minute.toString().padStart(2, "0");
+        secondText.innerHTML = second.toString().padStart(2, "0");
+    }
+
+    showTimer(timer);
+    setInterval(function(){
+        timer--;
+        showTimer(timer);
+
+    }, 1000)
+</script>
 </html>
